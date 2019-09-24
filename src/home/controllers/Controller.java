@@ -62,6 +62,10 @@ public class Controller implements Initializable {
         } else if (mouseEvent.getSource() == btnClasses) {
 
             loadStage("/home/fxml/Routines.fxml");
+
+        } else if (mouseEvent.getSource() == btnSettings) {
+
+            loadStage("/home/fxml/Settings.fxml");
         }
     }
 

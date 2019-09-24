@@ -7,6 +7,7 @@ public class User {
 
     private SimpleIntegerProperty id;
     private SimpleStringProperty email;
+    private SimpleStringProperty name;
     private SimpleIntegerProperty isAdmin;
 
     public User() {
@@ -14,10 +15,23 @@ public class User {
         id = new SimpleIntegerProperty();
         email = new SimpleStringProperty();
         isAdmin = new SimpleIntegerProperty();
+        name = new SimpleStringProperty();
     }
 
     public int getId() {
         return id.get();
+    }
+
+    public String getName() {
+        return name.get();
+    }
+
+    public SimpleStringProperty nameProperty() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name.set(name);
     }
 
     public SimpleIntegerProperty idProperty() {

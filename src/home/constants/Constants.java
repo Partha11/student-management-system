@@ -16,6 +16,7 @@ public interface Constants {
 
     String USER_ID = "id";
     String USER_EMAIL = "email";
+    String USER_NAME = "name";
     String USER_PASSWORD = "password";
     String IS_ADMIN = "is_admin";
 

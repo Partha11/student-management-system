@@ -126,9 +126,9 @@ public class StudentDao {
     public static void insertStudent (Student student) throws SQLException, ClassNotFoundException {
 
         String insert = "INSERT INTO students(" + Constants.STUDENT_NAME + ", " + Constants.STUDENT_ROLL + ", "
-                + Constants.STUDENT_DEPT + ", " + Constants.STUDENT_SESSION + ") VALUES ("
-                + student.getStudentName() + ", " + student.getStudentRoll() + ", " + student.getStudentDepartment()
-                + student.getStudentSession() + ")";
+                + Constants.STUDENT_DEPT + ", " + Constants.STUDENT_SESSION + ", " + Constants.STUDENT_EMAIL + ") VALUES ('"
+                + student.getStudentName() + "', '" + student.getStudentRoll() + "', '" + student.getStudentDepartment() + "', '"
+                + student.getStudentSession() + "', '" + student.getStudentEmail() + "')";
 
         try {
 
