@@ -1,14 +1,15 @@
 package home.controllers;
 
-import home.model.StudentsModel;
+import home.database.NoticeDao;
+import home.model.Notice;
+import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.chart.PieChart;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.*;
+import javafx.scene.input.MouseButton;
+import javafx.scene.layout.Pane;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -16,52 +17,65 @@ import java.util.ResourceBundle;
 public class DashboardController implements Initializable {
 
     @FXML
-    private TableView<StudentsModel> tbData;
+    private Pane noticePane;
     @FXML
-    public TableColumn<StudentsModel, Integer> studentId;
-
+    private TableView<Notice> tbData;
     @FXML
-    public TableColumn<StudentsModel, String> firstName;
-
+    public TableColumn<Notice, String> noticeDate;
     @FXML
-    public TableColumn<StudentsModel, String> lastName;
-
+    public TableColumn<Notice, String> noticeHeader;
     @FXML
-    private PieChart pieChart;
+    private Label noticeTitle;
+    @FXML
+    private TextArea noticeBody;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-        loadChart();
-        loadStudents();
+        loadNotices();
     }
 
-    private void loadChart() {
+    private void loadNotices() {
 
-        PieChart.Data slice1 = new PieChart.Data("Classes", 213);
-        PieChart.Data slice2 = new PieChart.Data("Attendance"  , 67);
-        PieChart.Data slice3 = new PieChart.Data("Teachers" , 36);
+        ObservableList<Notice> noticeList = FXCollections.observableArrayList();
+        noticeDate.setCellValueFactory(param -> new ReadOnlyObjectWrapper<>(param.getValue().getNoticeDate()));
+        noticeHeader.setCellValueFactory(param -> new ReadOnlyObjectWrapper<>(param.getValue().getNoticeTitle()));
+        tbData.setItems(noticeList);
+        noticePane.setVisible(false);
 
-        pieChart.getData().add(slice1);
-        pieChart.getData().add(slice2);
-        pieChart.getData().add(slice3);
+        try {
 
+            noticeList.addAll(NoticeDao.getNoticeList());
+
+        } catch (Exception e) {
+
+            e.printStackTrace();
+        }
+
+        tbData.setRowFactory(param -> {
+
+            TableRow<Notice> row = new TableRow<>();
+
+            row.setOnMouseClicked(event -> {
+
+                if (!row.isEmpty() && event.getButton() == MouseButton.PRIMARY) {
+
+                    noticePane.setVisible(true);
+                    setNotice(row.getItem());
+
+                } else {
+
+                    noticePane.setVisible(false);
+                }
+            });
+
+            return row;
+        });
     }
 
-    private ObservableList<StudentsModel> studentsModels = FXCollections.observableArrayList(
+    private void setNotice(Notice item) {
 
-            new StudentsModel(1,"Amos", "Chepchieng"),
-            new StudentsModel(2,"Amos", "Mors"),
-            new StudentsModel(3,"Amos", "Chepchieng"),
-            new StudentsModel(4,"Amos", "Mors")
-    );
-
-    private void loadStudents() {
-
-        studentId.setCellValueFactory(new PropertyValueFactory<>("StudentId"));
-        firstName.setCellValueFactory(new PropertyValueFactory<>("FirstName"));
-        lastName.setCellValueFactory(new PropertyValueFactory<>("LastName"));
-        tbData.setItems(studentsModels);
+        noticeTitle.setText(item.getNoticeTitle());
+        noticeBody.setText(item.getNoticeBody());
     }
-
 }

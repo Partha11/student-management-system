@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="609.0"
+            prefWidth="944.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="home.controllers.RoutineController">
+    <Pane layoutY="-2.0" prefHeight="139.0" prefWidth="950.0" style="-fx-background-color: #fac516;"
+          AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-6.0" AnchorPane.topAnchor="-2.0">
+        <Label layoutX="73.0" layoutY="30.0" text="Routines" textFill="WHITE">
+            <font>
+                <Font size="48.0"/>
+            </font>
+        </Label>
+        <Label layoutX="79.0" layoutY="91.0" text="Student Management" textFill="WHITE">
+            <font>
+                <Font size="13.0"/>
+            </font>
+        </Label>
+    </Pane>
+    <GridPane hgap="15.0" layoutX="45.0" layoutY="158.0" prefHeight="103.0" prefWidth="869.0"
+              AnchorPane.leftAnchor="45.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="158.0">
+        <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0"/>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0"/>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0"/>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0"/>
+        </columnConstraints>
+        <rowConstraints>
+            <RowConstraints minHeight="10.0" vgrow="SOMETIMES"/>
+        </rowConstraints>
+    </GridPane>
+    <SplitPane dividerPositions="0.5" layoutX="38.0" layoutY="150.0" prefHeight="449.0" prefWidth="869.0"
+               AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="38.0" AnchorPane.rightAnchor="37.0"
+               AnchorPane.topAnchor="150.0">
+        <GridPane maxWidth="-Infinity" minWidth="-Infinity" prefHeight="447.0" prefWidth="392.0">
+            <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0"/>
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints minHeight="10.0" vgrow="SOMETIMES"/>
+            </rowConstraints>
+            <TableView fx:id="tbData" maxWidth="-Infinity" pickOnBounds="false" prefHeight="365.0"
+                       prefWidth="500.0" stylesheets="@../css/fullpackstyling.css">
+                <columns>
+                    <TableColumn fx:id="routineTitle" minWidth="392.0" prefWidth="150.0" resizable="false"
+                                 text="Title"/>
+                </columns>
+                <columnResizePolicy>
+                    <TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
+                </columnResizePolicy>
+            </TableView>
+        </GridPane>
+        <Pane fx:id="routinePane" prefHeight="447.0" prefWidth="491.0">
+            <ScrollPane layoutX="14.0" layoutY="14.0" prefHeight="348.0" prefWidth="443.0">
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="370.0" prefWidth="465.0">
+                    <ImageView fx:id="routineImage" fitHeight="373.0" fitWidth="469.0"
+                               pickOnBounds="true" preserveRatio="true"/>
+                </AnchorPane>
+            </ScrollPane>
+            <Button fx:id="deleteRoutine" layoutX="209.0" layoutY="390.0" mnemonicParsing="false"
+                    onAction="#onDeleteClicked" text="Delete"/>
+        </Pane>
+    </SplitPane>
+</AnchorPane>

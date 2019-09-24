@@ -8,6 +8,8 @@
       <root url="jar://$PROJECT_DIR$/lib/controlsfx-8.40.13.jar!/" />
       <root url="jar://$PROJECT_DIR$/lib/fontawesomefx-commons-8.13.jar!/" />
       <root url="jar://$PROJECT_DIR$/lib/fontawesomefx-fontawesome-4.7.0-1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/ojdbc7.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/mysql-connector.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />
