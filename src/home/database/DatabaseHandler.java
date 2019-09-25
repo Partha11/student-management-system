@@ -23,7 +23,7 @@ class DatabaseHandler {
 
         try {
 
-            connection = DriverManager.getConnection("jdbc:mysql://localhost/student_management", "root", "");
+            connection = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/student_management", "root", "");
 
         } catch (SQLException e) {
 

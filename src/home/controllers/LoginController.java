@@ -11,6 +11,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -115,6 +117,21 @@ public class LoginController implements Initializable {
         } catch (IOException e) {
 
             e.printStackTrace();
+        }
+    }
+
+    public void onKeyPressed(KeyEvent event) {
+
+        if (event.getCode() == KeyCode.ENTER) {
+
+            if (event.getSource() == passwordTxt) {
+
+                loginBtn.fire();
+
+            } else if (event.getSource() == emailTxt) {
+
+                passwordTxt.requestFocus();
+            }
         }
     }
 }
